@@ -20,7 +20,7 @@ class EditorTest {
     private Atlas atlas;
     private RemoteWebDriver driver;
 
-    {
+    { //Example
         caps.setCapability("Name", "testtest");
         caps.setBrowserName("chrome");
         caps.setVersion("73.0");
@@ -57,5 +57,4 @@ class EditorTest {
     private PdfFillerSite onSite() {
         return this.atlas.create(driver, PdfFillerSite.class);
     }
-
 }
