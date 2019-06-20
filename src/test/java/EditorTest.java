@@ -1,23 +1,37 @@
 import com.pdffiller.page.EditorPage;
 import com.pdffiller.site.PdfFillerSite;
-import driver.SelenoideDriverProvider;
+import io.github.bonigarcia.seljup.DriverCapabilities;
+import io.github.bonigarcia.seljup.DriverUrl;
+import io.github.bonigarcia.seljup.SeleniumExtension;
 import io.qameta.atlas.core.Atlas;
 import io.qameta.atlas.webdriver.WebDriverConfiguration;
-
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.WebDriver;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
- class EditorTest {
+@ExtendWith(SeleniumExtension.class)
+class EditorTest {
+    @DriverCapabilities
+    DesiredCapabilities caps = new DesiredCapabilities();
+    @DriverUrl
+    String url = "http://localhost:4444/wd/hub";
     private Atlas atlas;
-    private WebDriver driver;
+    private RemoteWebDriver driver;
+
+    {
+        caps.setCapability("Name", "testtest");
+        caps.setBrowserName("chrome");
+        caps.setVersion("73.0");
+        caps.setCapability("enableVNC", true);
+        caps.setCapability("enableVideo", false);
+    }
 
     @BeforeEach
-    void startDriver() {
-        this.driver = new SelenoideDriverProvider().createDriver();
-        this.atlas = new Atlas(new WebDriverConfiguration(this.driver, "http://192.168.1.120:3002/"));
+    void startDriver(RemoteWebDriver driver) {
+        this.driver = driver;
+        this.atlas = new Atlas(new WebDriverConfiguration(driver, "http://192.168.88.249:3002/"));
     }
 
     @Test
@@ -29,17 +43,19 @@ import org.openqa.selenium.WebDriver;
     }
 
     @Test
-    void shouldCanOpenConstructor(){
+    void shouldCanOpenConstructor() {
         onSite().editor().open();
         onPage().constructorModeOn();
         onPage().textFilliableFieldBtn().click();
     }
 
+    //TODO create generic
     private EditorPage onPage() {
-        return this.atlas.create(this.driver, EditorPage.class);
+        return this.atlas.create(driver, EditorPage.class);
     }
-     private PdfFillerSite onSite() {
-         return this.atlas.create(this.driver, PdfFillerSite.class);
-     }
+
+    private PdfFillerSite onSite() {
+        return this.atlas.create(driver, PdfFillerSite.class);
+    }
 
 }

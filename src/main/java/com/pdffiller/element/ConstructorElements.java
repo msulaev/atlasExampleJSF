@@ -4,7 +4,7 @@ import io.qameta.atlas.webdriver.AtlasWebElement;
 import io.qameta.atlas.webdriver.extension.FindBy;
 import io.qameta.atlas.webdriver.extension.Param;
 
-public interface Constructor {
+public interface ConstructorElements {
     @FindBy("//button//span[contains(text(),'{{ filliableFieldName }}')]")
     AtlasWebElement toolbarElement(@Param("filliableFieldName") String toolName);
 
@@ -35,6 +35,7 @@ public interface Constructor {
     default AtlasWebElement initialsFilliableFieldBtn() {
         return toolbarElement("Initials");
     }
+
 
     default AtlasWebElement imageFilliableFieldBtn() {
         return toolbarElement("Image");
