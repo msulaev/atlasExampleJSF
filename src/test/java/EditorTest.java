@@ -1,4 +1,5 @@
 import com.pdffiller.page.EditorPage;
+import com.pdffiller.site.PdfFillerSite;
 import io.github.bonigarcia.seljup.DriverCapabilities;
 import io.github.bonigarcia.seljup.DriverUrl;
 import io.github.bonigarcia.seljup.SeleniumExtension;
@@ -8,6 +9,7 @@ import io.qameta.atlas.webdriver.WebPage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -21,7 +23,7 @@ class EditorTest {
     private RemoteWebDriver driver;
 
     { //Example
-        caps.setCapability("Name", "testtest");
+        caps.setCapability("Name", "msulaev");
         caps.setBrowserName("chrome");
         caps.setVersion("73.0");
         caps.setCapability("enableVNC", true);
@@ -31,19 +33,20 @@ class EditorTest {
     @BeforeEach
     void startDriver(RemoteWebDriver driver) {
         this.driver = driver;
-        this.atlas = new Atlas(new WebDriverConfiguration(driver, "http://192.168.1.121:3002/"));
+        driver.manage().window().setSize(new Dimension(1980, 1024));
+        this.atlas = new Atlas(new WebDriverConfiguration(driver));
     }
 
     @Test
-    void shouldCanClickSimpleTool() {
-        onPage().open();
-        onPage().arrowTool().click();
+    void shouldCanClickSimpleTool() throws InterruptedException {
+        onSite().open("http://192.168.1.121:3000/?isOfflineMode&dontWaitForPdf");
         onPage().checkTool().click();
         onPage().circleTool().click();
     }
 
     @Test
     void shouldCanOpenConstructor() {
+        onSite().open("http://192.168.1.121:3000/?isOfflineMode&dontWaitForPdf");
         onPage().constructorModeOn();
         onPage().textFilliableFieldBtn().click();
     }
@@ -51,6 +54,10 @@ class EditorTest {
     //TODO create generic
     private EditorPage onPage() {
         return onPage(EditorPage.class);
+    }
+
+    private PdfFillerSite onSite() {
+        return onPage(PdfFillerSite.class);
     }
 
     private <T extends WebPage> T onPage(Class<T> page) {
