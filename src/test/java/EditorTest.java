@@ -10,6 +10,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -31,7 +32,7 @@ class EditorTest {
     }
 
     @BeforeEach
-    void startDriver(RemoteWebDriver driver) {
+    void startDriver(ChromeDriver driver) {
         this.driver = driver;
         driver.manage().window().setSize(new Dimension(1980, 1024));
         this.atlas = new Atlas(new WebDriverConfiguration(driver));
@@ -39,16 +40,16 @@ class EditorTest {
 
     @Test
     void shouldCanClickSimpleTool() throws InterruptedException {
-        onSite().open("http://192.168.1.121:3000/?isOfflineMode&dontWaitForPdf");
+        onSite().open("http://192.168.1.211:3000/?isOfflineMode&dontWaitForPdf");
         onPage().checkTool().click();
         onPage().circleTool().click();
     }
 
     @Test
     void shouldCanOpenConstructor() {
-        onSite().open("http://192.168.1.121:3000/?isOfflineMode&dontWaitForPdf");
+        onSite().open("http://192.168.1.211:3000/?isOfflineMode&dontWaitForPdf");
         onPage().constructorModeOn();
-        onPage().textFilliableFieldBtn().click();
+        onPage().textFillableFieldBtn().click();
     }
 
     //TODO create generic

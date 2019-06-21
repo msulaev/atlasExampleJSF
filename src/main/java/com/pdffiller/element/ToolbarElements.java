@@ -48,9 +48,7 @@ public interface ToolbarElements {
         return toolbarElement("Text Box");
     }
 
-    default AtlasWebElement arrowTool() {
-        return toolbarElement("Arrow");
-    }
+    default AtlasWebElement arrowTool() { return toolbarElement("Arrow"); }
 
     default AtlasWebElement lineTool() {
         return toolbarElement("Line");

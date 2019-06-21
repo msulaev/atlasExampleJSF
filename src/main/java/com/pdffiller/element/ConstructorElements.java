@@ -8,36 +8,36 @@ public interface ConstructorElements {
     @FindBy("//button//span[contains(text(),'{{ filliableFieldName }}')]")
     AtlasWebElement toolbarElement(@Param("filliableFieldName") String toolName);
 
-    default AtlasWebElement textFilliableFieldBtn() {
+    default AtlasWebElement textFillableFieldBtn() {
         return toolbarElement("Text");
     }
 
-    default AtlasWebElement numberFilliableFieldBtn() {
+    default AtlasWebElement numberFillableFieldBtn() {
         return toolbarElement("Number");
     }
 
-    default AtlasWebElement dateFilliableFieldBtn() {
+    default AtlasWebElement dateFillableFieldBtn() {
         return toolbarElement("Date");
     }
 
-    default AtlasWebElement dropdownFilliableFieldBtn() {
+    default AtlasWebElement dropdownFillableFieldBtn() {
         return toolbarElement("Dropdown");
     }
 
-    default AtlasWebElement checkboxFilliableFieldBtn() {
+    default AtlasWebElement checkboxFillableFieldBtn() {
         return toolbarElement("Checkbox");
     }
 
-    default AtlasWebElement signatureFilliableFieldBtn() {
+    default AtlasWebElement signatureFillableFieldBtn() {
         return toolbarElement("Signature");
     }
 
-    default AtlasWebElement initialsFilliableFieldBtn() {
+    default AtlasWebElement initialsFillableFieldBtn() {
         return toolbarElement("Initials");
     }
 
 
-    default AtlasWebElement imageFilliableFieldBtn() {
+    default AtlasWebElement imageFillableFieldBtn() {
         return toolbarElement("Image");
     }
 
