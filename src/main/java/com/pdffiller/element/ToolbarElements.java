@@ -4,7 +4,7 @@ import io.qameta.atlas.webdriver.AtlasWebElement;
 import io.qameta.atlas.webdriver.extension.FindBy;
 import io.qameta.atlas.webdriver.extension.Param;
 
-public interface ToolbarElement {
+public interface ToolbarElements {
     @FindBy("//button[@title='{{ toolName }} Tool']")
     AtlasWebElement toolbarElement(@Param("toolName") String toolName);
 
