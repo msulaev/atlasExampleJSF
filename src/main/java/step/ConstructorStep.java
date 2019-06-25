@@ -9,6 +9,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 
+import static org.openqa.selenium.By.*;
+
 public class ConstructorStep {
     DocumentGridForField documentGridForField;
     private WebDriver driver;
@@ -25,20 +27,24 @@ public class ConstructorStep {
     public void addField(String field, String fieldName, int[][] grid) {
         onConstructorPage().constructorElement(field).click();
         documentGridForField.assignFieldToLocation(fieldName, grid);
-        System.out.println(onConstructorPage().findElement(By.className("elementsWrapper-Content")).getLocation().x);
-        System.out.println(onConstructorPage().findElement(By.className("elementsWrapper-Content")).getLocation().y);
         new Actions(driver).moveToElement(
-                driver.findElement(By.className("elementsWrapper-Content")),
-                onConstructorPage().findElement(By.className("elementsWrapper-Content")).getLocation().x + documentGridForField.fieldsLocation.get(fieldName)[0],
-                onConstructorPage().findElement(By.className("elementsWrapper-Content")).getLocation().y + documentGridForField.fieldsLocation.get(fieldName)[1]).click().build().perform();
+                onConstructorPage().document(),documentGridForField.fieldsLocation.get(fieldName)[0],
+                documentGridForField.fieldsLocation.get(fieldName)[1]).click().build().perform();
+    }
+
+    @Step
+    public int [][] createGrid(int fieldCount) {
+        return documentGridForField.createGrid(fieldCount,
+                onConstructorPage().getDocumentSizeInConstructor().width,
+                onConstructorPage().getDocumentSizeInConstructor().height);
     }
 
     @Step
     public void checkField() {
-
-
+        System.out.println(onConstructorPage().activeField().getLocation());
     }
 
+    @Step
     public void clickSaveBtn() {
         onConstructorPage().saveBtn().click();
     }

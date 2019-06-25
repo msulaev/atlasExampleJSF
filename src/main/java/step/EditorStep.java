@@ -5,9 +5,12 @@ import io.qameta.allure.Step;
 import io.qameta.atlas.core.Atlas;
 import io.qameta.atlas.webdriver.WebPage;
 import org.openqa.selenium.WebDriver;
+import com.pdffiller.element.DocumentElements;
+
+import static java.lang.Thread.sleep;
 
 public class EditorStep {
-
+    DocumentElements documentElements;
     private WebDriver driver ;
     private Atlas atlas;
 
@@ -17,8 +20,17 @@ public class EditorStep {
     }
 
     @Step
+    public void checkField(){
+        onEditorPage().activeField().isDisplayed();
+        onEditorPage().activeField().click();
+        System.out.println(onEditorPage().activeField().getLocation().toString());
+    }
 
-
+    @Step
+    public void setPercentPageScale(String percent) {
+        onEditorPage().pageScale().click();
+        onEditorPage().pageScalePercent(percent).click();
+    }
 
     private EditorPage onEditorPage() {
         return onPage(EditorPage.class);

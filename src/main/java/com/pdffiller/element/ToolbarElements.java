@@ -7,7 +7,13 @@ import io.qameta.atlas.webdriver.extension.Param;
 public interface ToolbarElements {
     @FindBy("//button[@title='{{ toolName }} Tool']")
     AtlasWebElement toolbarElement(@Param("toolName") String toolName);
+    @FindBy("//div[@class='toolbar__item']//span[contains(text(),'{{ toolBarItemName }}')]")
+    AtlasWebElement toolBarItem(@Param("toolBarItemName") String toolBarItemName);
+    @FindBy("//li[@class='menu__list-item']//button//span[contains(text(), '{{ percent }}')]/parent::*/parent::*/parent::*")
+    AtlasWebElement pageScalePercent(@Param("percent") String percent);
 
+    default AtlasWebElement pageScale75() { return pageScalePercent("75%"); }
+    default AtlasWebElement pageScale() { return  toolBarItem("Fit Width"); }
     default AtlasWebElement textTool() {
         return toolbarElement("Text");
     }
@@ -42,4 +48,5 @@ public interface ToolbarElements {
     default AtlasWebElement lineTool() {
         return toolbarElement("Line");
     }
+
 }
