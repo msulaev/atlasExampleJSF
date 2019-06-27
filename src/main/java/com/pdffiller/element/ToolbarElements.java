@@ -3,8 +3,13 @@ package com.pdffiller.element;
 import io.qameta.atlas.webdriver.AtlasWebElement;
 import io.qameta.atlas.webdriver.extension.FindBy;
 import io.qameta.atlas.webdriver.extension.Param;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public interface ToolbarElements {
+     Logger logger
+            = LoggerFactory.getLogger(ToolbarElements.class);
+
     @FindBy("//button[@title='{{ toolName }} Tool']")
     AtlasWebElement toolbarElement(@Param("toolName") String toolName);
     @FindBy("//div[@class='toolbar__item']//span[contains(text(),'{{ toolBarItemName }}')]")
@@ -49,4 +54,8 @@ public interface ToolbarElements {
         return toolbarElement("Line");
     }
 
+    default AtlasWebElement getToolbarElement(String toolName){
+        logger.info("//button[@title='{} Tool']", toolName);
+        return toolbarElement(toolName);
+    }
 }

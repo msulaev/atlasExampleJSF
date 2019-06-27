@@ -20,7 +20,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import javax.swing.*;
 
 @ExtendWith(SeleniumExtension.class)
@@ -34,6 +35,7 @@ class EditorTest {
     ConstructorStep constructorStep;
     EditorStep editorStep;
     DocumentGridForField documentGridForField;
+
 
 
     { //Example
@@ -51,22 +53,20 @@ class EditorTest {
         this.atlas = new Atlas(new WebDriverConfiguration(driver));
         constructorStep = new ConstructorStep(driver, atlas);
         editorStep = new EditorStep(driver, atlas);
-
         documentGridForField = new DocumentGridForField();
     }
 
     @Test
     void shouldCanClickSimpleTool() throws InterruptedException {
         onSite().open("http://192.168.1.211:3000/?isOfflineMode&dontWaitForPdf");
-        onPage().checkTool().click();
-        onPage().circleTool().click();
+        editorStep.clickCheckTool();
+        editorStep.clickCircleTool();
     }
 
     @Test
     void shouldCanOpenConstructor() throws InterruptedException {
         onSite().open("http://192.168.1.211:3000/?isOfflineMode&dontWaitForPdf");
         onPage().constructorModeOn();
-//        constructorStep.addField(300, 100, "Number");
         constructorStep.clickSaveBtn();
         onPage().activeField().click();
         onPage().activeField().sendKeys("123123");
