@@ -59,8 +59,7 @@ class EditorTest {
     @Test
     void shouldCanClickSimpleTool() throws InterruptedException {
         onSite().open("http://192.168.1.211:3000/?isOfflineMode&dontWaitForPdf");
-        editorStep.clickCheckTool();
-        editorStep.clickCircleTool();
+        editorStep.clickSimpleToolToolbarElement("Check");
     }
 
     @Test

@@ -37,17 +37,11 @@ public class EditorStep {
     }
 
     @Step
-    public void clickCheckTool() {
-//        onEditorPage().checkTool().click();
-//        logger.info("Click check tool");
-        onEditorPage().getToolbarElement("Check");
+    public void clickSimpleToolToolbarElement(String element) {
+        onEditorPage().getSimpleToolToolbarElement(element);
     }
 
-    @Step
-    public void clickCircleTool() {
-        onEditorPage().circleTool().click();
-        logger.info("Click circle tool");
-    }
+
 
     private EditorPage onEditorPage() {
         return onPage(EditorPage.class);
