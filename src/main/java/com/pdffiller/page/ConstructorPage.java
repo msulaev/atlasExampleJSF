@@ -1,75 +1,47 @@
 package com.pdffiller.page;
 
-import io.qameta.atlas.core.Atlas;
 import io.qameta.atlas.webdriver.AtlasWebElement;
 import io.qameta.atlas.webdriver.ElementsCollection;
 import io.qameta.atlas.webdriver.WebPage;
 import io.qameta.atlas.webdriver.extension.FindBy;
 import io.qameta.atlas.webdriver.extension.Param;
-import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.interactions.Actions;
-import com.pdffiller.element.DocumentElements;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.lang.invoke.MethodHandles;
 
 public interface ConstructorPage extends WebPage{
-    WebDriver driver = null;
-    @FindBy("//button//span[contains(text(),'{{ filliableFieldName }}')]")
-    AtlasWebElement constructorElement(@Param("filliableFieldName") String toolName);
+    Logger logger
+            = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
+    @FindBy("//button//span[contains(text(),'{{ filliableFieldName }}')]")
+    AtlasWebElement fieldOnConstructorPanel(@Param("filliableFieldName") String toolName);
     @FindBy("//span[contains(text(),'SAVE')]")
     AtlasWebElement saveBtn();
-
     @FindBy("//span[contains(text(), 'Advanced')]")
-    AtlasWebElement advancedOptions();
-
+    AtlasWebElement fieldAdvancedOptions();
     @FindBy("//*[contains(@class, ('panel-header is-active'))]")
     ElementsCollection advancedOptionsOpen();
-
     @FindBy("//div[@class='Select-option']")
     ElementsCollection ddValues();
-
     @FindBy("//span[contains(text(),'{{ advancedParameter }}')]/parent::*/parent::*/parent::*/div[@class='entitled-box__main']")
-    AtlasWebElement advancedParamentrWithDd(@Param("advancedParameter") String parameter);
-
+    AtlasWebElement fieldAdvancedParameter(@Param("advancedParameter") String parameter);// var parameter its name of advanced parameter,
+//this element is a field in which you need to specify the value of this advanced parameter
     @FindBy("//div[@class='page-Page pageActive-Pagination']//div[@class='elementsWrapper-Content']")
     AtlasWebElement document();
-
     @FindBy(("//*[contains(@class, ('is-active'))]"))
     AtlasWebElement activeField();
 
-
-
-    default AtlasWebElement textFillableFieldBtn() { return constructorElement("Text"); }
-
-    default AtlasWebElement numberFillableFieldBtn() { return constructorElement("Number"); }
-
-    default AtlasWebElement dateFillableFieldBtn() {
-        return constructorElement("Date");
+    default AtlasWebElement getConstructorField(String toolName){
+        logger.info("'{}' element selector: //button//span[contains(text(),'{}')]", toolName, toolName);
+        return fieldOnConstructorPanel(toolName);
     }
 
-    default AtlasWebElement dropdownFillableFieldBtn() {
-        return constructorElement("Dropdown");
-    }
-
-    default AtlasWebElement checkboxFillableFieldBtn() {
-        return constructorElement("Checkbox");
-    }
-
-    default AtlasWebElement signatureFillableFieldBtn() {
-        return constructorElement("Signature");
-    }
-
-    default AtlasWebElement initialsFillableFieldBtn() {
-        return constructorElement("Initials");
-    }
-
-    default AtlasWebElement imageFillableFieldBtn() {
-        return constructorElement("Image");
-    }
-
-    default  Dimension getDocumentSizeInConstructor() {
-        return document().getSize();
+    default AtlasWebElement getFieldAdvancedParameter(String parameter){
+        logger.info("'{}' element selector: //span[contains(text(),'{}')]/parent::*/parent::*/parent::*/div[@class='entitled-box__main']",
+                parameter, parameter);
+        return fieldAdvancedParameter(parameter);
     }
 
 }

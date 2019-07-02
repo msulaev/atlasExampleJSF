@@ -5,11 +5,8 @@ import com.pdffiller.utils.DocumentGridForField;
 import io.qameta.allure.Step;
 import io.qameta.atlas.core.Atlas;
 import io.qameta.atlas.webdriver.WebPage;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
-
-import static org.openqa.selenium.By.*;
 
 public class ConstructorStep {
     DocumentGridForField documentGridForField;
@@ -25,7 +22,7 @@ public class ConstructorStep {
 
     @Step("add field type: { field }")
     public void addField(String field, String fieldName, int[][] grid) {
-        onConstructorPage().constructorElement(field).click();
+        onConstructorPage().fieldOnConstructorPanel(field).click();
         documentGridForField.assignFieldToLocation(fieldName, grid);
         new Actions(driver).moveToElement(
                 onConstructorPage().document(),documentGridForField.fieldsLocation.get(fieldName)[0],
@@ -35,13 +32,12 @@ public class ConstructorStep {
     @Step
     public int [][] createGrid(int fieldCount) {
         return documentGridForField.createGrid(fieldCount,
-                onConstructorPage().getDocumentSizeInConstructor().width,
-                onConstructorPage().getDocumentSizeInConstructor().height);
+                onConstructorPage().document().getSize());
     }
 
     @Step
     public void checkField() {
-        System.out.println(onConstructorPage().activeField().getLocation());
+        //do something with some field, maybe active, maybe no
     }
 
     @Step
@@ -50,11 +46,11 @@ public class ConstructorStep {
     }
 
     public void openAdvancedOptions() {
-        onConstructorPage().advancedOptions().click();
+        onConstructorPage().fieldAdvancedOptions().click();
     }
 
     public void chooseAdvancedParametrWithDd(String parameter) {
-        onConstructorPage().advancedParamentrWithDd(parameter).click();
+        onConstructorPage().fieldAdvancedParameter(parameter).click();
         onConstructorPage().ddValues(); // to do
     }
 

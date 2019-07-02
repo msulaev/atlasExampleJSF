@@ -1,17 +1,22 @@
 package com.pdffiller.utils;
 
+import java.lang.invoke.MethodHandles;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+import org.openqa.selenium.Dimension;
 import static java.util.stream.IntStream.range;
 
 public class DocumentGridForField {
     public Map<String, int[]> fieldsLocation = new HashMap<>();
+    Logger logger
+            = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-    public static int[][] createGrid(int fieldCount, int width, int height) { //, int offsetX, int offsetY
+    public static int[][] createGrid(int fieldCount, Dimension dimension) {
+        int width = dimension.getWidth();
+        int height = dimension.getHeight();
         int offsetX = width/2;
         int offsetY = 2*height/7;
 
@@ -41,9 +46,6 @@ public class DocumentGridForField {
     public void assignFieldToLocation(String fieldName, int[][] grid) {
         int locationNumber = fieldsLocation.size();
         fieldsLocation.put(fieldName, grid[locationNumber]);
-        fieldsLocation.forEach((x,y)-> {
-            System.out.println(x);
-            System.out.println(Arrays.toString(y));
-        });
+        logger.info("field: {}, coords: {}",fieldName, Arrays.toString(grid[locationNumber]));
     }
 }

@@ -6,9 +6,11 @@ import io.qameta.atlas.webdriver.extension.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.lang.invoke.MethodHandles;
+
 public interface ToolbarElements {
      Logger logger
-            = LoggerFactory.getLogger(ToolbarElements.class);
+            = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     @FindBy("//button[@title='{{ toolName }} Tool']")
     AtlasWebElement toolbarElement(@Param("toolName") String toolName);
@@ -22,8 +24,13 @@ public interface ToolbarElements {
         return toolbarElement(toolName);
     }
 
-    default AtlasWebElement getToolbarElement(String toolName){
-        logger.info("{} element selector: //button[@title='{} Tool']", toolName, toolName);
-        return toolbarElement(toolName);
+    default AtlasWebElement getToolbarParameter(String parameter){
+        logger.info("'{}' element selector: //div[@class='toolbar__item']//span[contains(text(),'{}')]", parameter, parameter);
+        return toolBarItem(parameter);
+    }
+
+    default AtlasWebElement getPercentScale(String percent){
+        logger.info("{} element selector: //li[@class='menu__list-item']//button//span[contains(text(), {})]/parent::*/parent::*/parent::*", percent, percent);
+        return pageScalePercent(percent);
     }
 }

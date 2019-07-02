@@ -1,7 +1,5 @@
 import com.pdffiller.page.EditorPage;
-import com.pdffiller.page.ConstructorPage;
 import com.pdffiller.utils.DocumentGridForField;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import step.ConstructorStep;
 import step.EditorStep;
 import com.pdffiller.site.PdfFillerSite;
@@ -14,15 +12,11 @@ import io.qameta.atlas.webdriver.WebPage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import javax.swing.*;
+
 
 @ExtendWith(SeleniumExtension.class)
 class EditorTest {
@@ -65,37 +59,36 @@ class EditorTest {
     @Test
     void shouldCanOpenConstructor() throws InterruptedException {
         onSite().open("http://192.168.1.211:3000/?isOfflineMode&dontWaitForPdf");
-        onPage().constructorModeOn();
+        editorStep.openConstructor();
         constructorStep.clickSaveBtn();
-        onPage().activeField().click();
-        onPage().activeField().sendKeys("123123");
+        editorStep.enterTextToActiveField("123123");
     }
 
-    @Test
-    void validationTest() throws InterruptedException {
+//    @Test To do
+//    void validationTest() throws InterruptedException {
 //        int [] [] grid = documentGridForField.createGrid(10);
-        onSite().open("http://192.168.1.211:3000/?isOfflineMode&dontWaitForPdf");
-        onPage().constructorModeOn();
-       // constructorStep.addField(300, 100, "Number", "Number1", grid);
-        constructorStep.openAdvancedOptions();
-    }
+//        onSite().open("http://192.168.1.211:3000/?isOfflineMode&dontWaitForPdf");
+//        onPage().constructorModeOn();
+//       // constructorStep.addField(300, 100, "Number", "Number1", grid);
+//        constructorStep.openAdvancedOptions();
+//    }
 
     @Test
     void addFieldToGrid()  throws InterruptedException {
-        onSite().open("http://192.168.1.211:3000/?isOfflineMode&dontWaitForPdf"); //http://localhost:3000/?projectId=1547680687&viewerId=83537429&token=token#f789dd3b73b14d488e4075dc5ce3be2e
-        Thread.sleep(1000);
-        onPage().btnLastPage().click();
-        Thread.sleep(1000);
-        editorStep.setPercentPageScale("75");
-        Thread.sleep(1000);
-        onPage().constructorModeOn();
+        onSite().open("http://192.168.1.211:3000/?isOfflineMode&dontWaitForPdf");
+        editorStep.openConstructor();
         int [][] grid = constructorStep.createGrid(10 );
         constructorStep.addField("Number", "Number1", grid);
         constructorStep.addField("Text", "Text1", grid);
         constructorStep.clickSaveBtn();
-        onPage().activeField().click();
-        onPage().activeField().sendKeys("123");
+        editorStep.enterTextToActiveField("123");
+    }
 
+    @Test
+    void changePageScale() throws InterruptedException {
+        onSite().open("http://192.168.1.211:3000/?isOfflineMode&dontWaitForPdf");
+        editorStep.goToLastDocumentPage();
+        editorStep.setPercentPageScale("75");
     }
 
     //TODO create generic
