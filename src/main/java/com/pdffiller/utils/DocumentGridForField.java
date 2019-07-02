@@ -15,6 +15,13 @@ public class DocumentGridForField {
             = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     public static int[][] createGrid(int fieldCount, Dimension dimension) {
+        if (fieldCount<1){
+            throw new NullPointerException("minimum 1 field");
+        }
+        if (fieldCount>20) {
+            throw new NullPointerException("maximum 20 fields on 1 page");
+        }
+
         int width = dimension.getWidth();
         int height = dimension.getHeight();
         int offsetX = width/2;
@@ -40,6 +47,7 @@ public class DocumentGridForField {
             resultGrid[j + (int) (height / heightCell) * n][0] = (int) ((cellCenter[0] + widthCell * n) - offsetX);
             resultGrid[j + (int) (height / heightCell) * n][1] = (int) ((cellCenter[1] + heightCell * j) - offsetY);
         }));
+
         return resultGrid;
     }
 
