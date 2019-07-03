@@ -6,11 +6,11 @@ import io.qameta.atlas.webdriver.AtlasWebElement;
 import io.qameta.atlas.webdriver.WebPage;
 import io.qameta.atlas.webdriver.extension.FindBy;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import static org.slf4j.LoggerFactory.getLogger;
 
 public interface EditorPage extends WebPage, ToolbarElements, DocumentElements {
-    Logger logger
-            = LoggerFactory.getLogger(ToolbarElements.class);
+    Logger logger = getLogger(ToolbarElements.class);
 
     @FindBy("//span[contains(text(),'ADD FILLABLE FIELDS')]")
     AtlasWebElement constructorBtn();
@@ -23,5 +23,4 @@ public interface EditorPage extends WebPage, ToolbarElements, DocumentElements {
         logger.info("constructorBtn element selector //span[contains(text(),'ADD FILLABLE FIELDS')]");
         constructorBtn().click();
     }
-
 }

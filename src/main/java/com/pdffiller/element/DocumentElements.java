@@ -3,15 +3,14 @@ package com.pdffiller.element;
 import io.qameta.atlas.webdriver.AtlasWebElement;
 import io.qameta.atlas.webdriver.extension.FindBy;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.lang.invoke.MethodHandles;
 
+import static org.slf4j.LoggerFactory.getLogger;
+
 
 public interface DocumentElements {
-    Logger logger
-            = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
-
+    Logger logger = getLogger(MethodHandles.lookup().lookupClass());
 
     @FindBy("//*[contains(@class, ('is-focused'))]//textarea")
     AtlasWebElement activeField();
@@ -20,5 +19,4 @@ public interface DocumentElements {
         logger.info("active filed element selector //*[contains(@class, ('is-focused'))]//textarea");
         activeField().click();
     }
-
 }

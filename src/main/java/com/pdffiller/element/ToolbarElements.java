@@ -4,13 +4,13 @@ import io.qameta.atlas.webdriver.AtlasWebElement;
 import io.qameta.atlas.webdriver.extension.FindBy;
 import io.qameta.atlas.webdriver.extension.Param;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.lang.invoke.MethodHandles;
 
+import static org.slf4j.LoggerFactory.getLogger;
+
 public interface ToolbarElements {
-    Logger logger
-            = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+    Logger logger = getLogger(MethodHandles.lookup().lookupClass());
 
     @FindBy("//button[@title='{{ toolName }} Tool']")
     AtlasWebElement toolbarElement(@Param("toolName") String toolName);

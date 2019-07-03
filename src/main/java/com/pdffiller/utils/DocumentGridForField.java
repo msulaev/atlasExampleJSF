@@ -2,7 +2,6 @@ package com.pdffiller.utils;
 
 import org.openqa.selenium.Dimension;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.lang.invoke.MethodHandles;
 import java.util.Arrays;
@@ -10,10 +9,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static java.util.stream.IntStream.range;
+import static org.slf4j.LoggerFactory.getLogger;
 
 public class DocumentGridForField {
-    public static Logger logger
-            = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+    private Logger logger = getLogger(MethodHandles.lookup().lookupClass());
     public Map<String, int[]> fieldsLocation = new HashMap<>();
 
     public static void main(String[] args) {

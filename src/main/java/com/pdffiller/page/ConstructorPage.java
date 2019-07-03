@@ -6,13 +6,13 @@ import io.qameta.atlas.webdriver.WebPage;
 import io.qameta.atlas.webdriver.extension.FindBy;
 import io.qameta.atlas.webdriver.extension.Param;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.lang.invoke.MethodHandles;
 
+import static org.slf4j.LoggerFactory.getLogger;
+
 public interface ConstructorPage extends WebPage {
-    Logger logger
-            = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+    Logger logger = getLogger(MethodHandles.lookup().lookupClass());
 
     @FindBy("//button//span[contains(text(),'{{ filliableFieldName }}')]")
     AtlasWebElement fieldOnConstructorPanel(@Param("filliableFieldName") String toolName);
