@@ -1,10 +1,10 @@
 package com.pdffiller.page;
 
+import com.pdffiller.element.DocumentElements;
 import com.pdffiller.element.ToolbarElements;
 import io.qameta.atlas.webdriver.AtlasWebElement;
 import io.qameta.atlas.webdriver.WebPage;
 import io.qameta.atlas.webdriver.extension.FindBy;
-import com.pdffiller.element.DocumentElements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

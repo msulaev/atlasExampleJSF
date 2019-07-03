@@ -9,27 +9,29 @@ import org.slf4j.LoggerFactory;
 import java.lang.invoke.MethodHandles;
 
 public interface ToolbarElements {
-     Logger logger
+    Logger logger
             = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     @FindBy("//button[@title='{{ toolName }} Tool']")
     AtlasWebElement toolbarElement(@Param("toolName") String toolName);
+
     @FindBy("//div[@class='toolbar__item']//span[contains(text(),'{{ toolBarItemName }}')]")
     AtlasWebElement toolBarItem(@Param("toolBarItemName") String toolBarItemName);
+
     @FindBy("//li[@class='menu__list-item']//button//span[contains(text(), '{{ percent }}')]/parent::*/parent::*/parent::*")
     AtlasWebElement pageScalePercent(@Param("percent") String percent);
 
-    default AtlasWebElement getSimpleToolToolbarElement(String toolName){
+    default AtlasWebElement getSimpleToolToolbarElement(String toolName) {
         logger.info("{} element selector: //button[@title='{} Tool']", toolName, toolName);
         return toolbarElement(toolName);
     }
 
-    default AtlasWebElement getToolbarParameter(String parameter){
+    default AtlasWebElement getToolbarParameter(String parameter) {
         logger.info("'{}' element selector: //div[@class='toolbar__item']//span[contains(text(),'{}')]", parameter, parameter);
         return toolBarItem(parameter);
     }
 
-    default AtlasWebElement getPercentScale(String percent){
+    default AtlasWebElement getPercentScale(String percent) {
         logger.info("{} element selector: //li[@class='menu__list-item']//button//span[contains(text(), {})]/parent::*/parent::*/parent::*", percent, percent);
         return pageScalePercent(percent);
     }

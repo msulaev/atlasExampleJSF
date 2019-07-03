@@ -5,10 +5,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Dimension;
 
-import java.util.Map;
-
-import static org.junit.jupiter.api.Assertions.*;
-
 class DocumentGridForFieldTest {
     private Dimension dimension;
 
@@ -39,7 +35,7 @@ class DocumentGridForFieldTest {
     void createGrid_more_10_and_odd_fields() {
         int fieldCount  = 13;
         int [][] actual = DocumentGridForField.createGrid(fieldCount,dimension);
-        int expectedLength = fieldCount;
+        int expectedLength = fieldCount+1;
         int actualLength = actual.length;
         Assertions.assertEquals(expectedLength,actualLength);
     }
@@ -48,15 +44,15 @@ class DocumentGridForFieldTest {
     void createGrid_range_boundaries () {
         int fieldCount = 15;
         int[][] actual = DocumentGridForField.createGrid(fieldCount, dimension);
-        boolean overseas = false;
+        boolean cellOverseasBorderDocument = false;
         for (int[] cell : actual) {
             if ((dimension.getWidth() - Math.abs(cell[0])) < 1) {
-                overseas = true;
+                cellOverseasBorderDocument = true;
             }
             if ((dimension.getHeight() - Math.abs(cell[1])) < 1) {
-                overseas = true;
+                cellOverseasBorderDocument = true;
             }
         }
-        Assertions.assertTrue(!overseas);
+        Assertions.assertFalse(cellOverseasBorderDocument);
     }
 }

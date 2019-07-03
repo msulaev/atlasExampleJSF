@@ -8,7 +8,7 @@ public interface PdfFillerSite extends WebPage {
     @Page
     EditorPage editor();
 
-    default void openEditor(String Url){
+    default void openEditor(String Url) {
         editor().open(Url);
     }
 }

@@ -1,8 +1,6 @@
 import com.pdffiller.page.EditorPage;
-import com.pdffiller.utils.DocumentGridForField;
-import step.ConstructorStep;
-import step.EditorStep;
 import com.pdffiller.site.PdfFillerSite;
+import com.pdffiller.utils.DocumentGridForField;
 import io.github.bonigarcia.seljup.DriverCapabilities;
 import io.github.bonigarcia.seljup.DriverUrl;
 import io.github.bonigarcia.seljup.SeleniumExtension;
@@ -16,6 +14,8 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import step.ConstructorStep;
+import step.EditorStep;
 
 
 @ExtendWith(SeleniumExtension.class)
@@ -24,13 +24,11 @@ class EditorTest {
     DesiredCapabilities caps = new DesiredCapabilities();
     @DriverUrl
     String url = "http://192.168.1.121:4444/wd/hub";
-    private Atlas atlas;
-    private RemoteWebDriver driver;
     ConstructorStep constructorStep;
     EditorStep editorStep;
     DocumentGridForField documentGridForField;
-
-
+    private Atlas atlas;
+    private RemoteWebDriver driver;
 
     { //Example
         caps.setCapability("Name", "msulaev");
@@ -64,20 +62,11 @@ class EditorTest {
         editorStep.enterTextToActiveField("123123");
     }
 
-//    @Test To do
-//    void validationTest() throws InterruptedException {
-//        int [] [] grid = documentGridForField.createGrid(10);
-//        onSite().open("http://192.168.1.211:3000/?isOfflineMode&dontWaitForPdf");
-//        onPage().constructorModeOn();
-//       // constructorStep.addField(300, 100, "Number", "Number1", grid);
-//        constructorStep.openAdvancedOptions();
-//    }
-
     @Test
-    void addFieldToGrid()  throws InterruptedException {
+    void addFieldToGrid() throws InterruptedException {
         onSite().open("http://192.168.1.211:3000/?isOfflineMode&dontWaitForPdf");
         editorStep.openConstructor();
-        int [][] grid = constructorStep.createGrid(10 );
+        int[][] grid = constructorStep.createGrid(10);
         constructorStep.addField("Number", "Number1", grid);
         constructorStep.addField("Text", "Text1", grid);
         constructorStep.clickSaveBtn();

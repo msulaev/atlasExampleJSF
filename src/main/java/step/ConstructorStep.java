@@ -25,19 +25,14 @@ public class ConstructorStep {
         onConstructorPage().fieldOnConstructorPanel(field).click();
         documentGridForField.assignFieldToLocation(fieldName, grid);
         new Actions(driver).moveToElement(
-                onConstructorPage().document(),documentGridForField.fieldsLocation.get(fieldName)[0],
+                onConstructorPage().document(), documentGridForField.fieldsLocation.get(fieldName)[0],
                 documentGridForField.fieldsLocation.get(fieldName)[1]).click().build().perform();
     }
 
     @Step
-    public int [][] createGrid(int fieldCount) {
-        return documentGridForField.createGrid(fieldCount,
+    public int[][] createGrid(int fieldCount) {
+        return DocumentGridForField.createGrid(fieldCount,
                 onConstructorPage().document().getSize());
-    }
-
-    @Step
-    public void checkField() {
-        //do something with some field, maybe active, maybe no
     }
 
     @Step
