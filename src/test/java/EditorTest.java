@@ -59,7 +59,6 @@ class EditorTest {
         onSite().open("http://192.168.1.211:3000/?isOfflineMode&dontWaitForPdf");
         editorStep.openConstructor();
         constructorStep.clickSaveBtn();
-        editorStep.enterTextToActiveField("123123");
     }
 
     @Test
