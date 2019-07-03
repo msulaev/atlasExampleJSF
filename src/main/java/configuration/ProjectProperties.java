@@ -4,11 +4,11 @@ import org.aeonbits.owner.Config;
 @Config.Sources("classpath:testconfig.properties")
 
 public interface ProjectProperties extends Config {
-        @DefaultValue("http://localhost:4444/wd/hub")
+        @DefaultValue("http://192.168.1.121:4444/wd/hub/")
         @Key("selenoid.url")
         String url();
 
-        @DefaultValue("http://localhost:3000")
+        @DefaultValue("http://http://192.168.1.211:3000/?isOfflineMode&dontWaitForPdf")
         @Key("base.url")
         String baseUrl();
 
