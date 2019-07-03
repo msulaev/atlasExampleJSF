@@ -12,4 +12,8 @@ public interface ProjectProperties extends Config {
         @Key("base.url")
         String baseUrl();
 
+        @DefaultValue("http://dev3.pdffiller.com/en/login.htm")
+        @Key("login.url")
+        String loginUrl();
+
     }
