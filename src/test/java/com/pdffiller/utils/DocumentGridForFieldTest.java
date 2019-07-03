@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Dimension;
+import static org.junit.jupiter.api.Assertions.*;
 
 class DocumentGridForFieldTest {
     private Dimension dimension;
@@ -19,7 +20,7 @@ class DocumentGridForFieldTest {
         int [][] actual = DocumentGridForField.createGrid(fieldCount,dimension);
         int expectedLength = fieldCount;
         int actualLength = actual.length;
-        Assertions.assertEquals(expectedLength,actualLength);
+        assertEquals(expectedLength,actualLength);
     }
 
     @Test
@@ -28,7 +29,7 @@ class DocumentGridForFieldTest {
         int [][] actual = DocumentGridForField.createGrid(fieldCount,dimension);
         int expectedLength = fieldCount;
         int actualLength = actual.length;
-        Assertions.assertEquals(expectedLength,actualLength);
+        assertEquals(expectedLength,actualLength);
     }
 
     @Test
@@ -37,7 +38,7 @@ class DocumentGridForFieldTest {
         int [][] actual = DocumentGridForField.createGrid(fieldCount,dimension);
         int expectedLength = fieldCount+1;
         int actualLength = actual.length;
-        Assertions.assertEquals(expectedLength,actualLength);
+        assertEquals(expectedLength,actualLength);
     }
 
     @Test
@@ -53,6 +54,6 @@ class DocumentGridForFieldTest {
                 cellOverseasBorderDocument = true;
             }
         }
-        Assertions.assertFalse(cellOverseasBorderDocument);
+        assertFalse(cellOverseasBorderDocument);
     }
 }
