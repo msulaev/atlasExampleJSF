@@ -10,10 +10,9 @@ class LoginTest extends BaseTest {
 
     @Test
     void shouldCanNotLoginWithInvalidCredential() {
-        onSite().open("http://dev3.pdffiller.com/en/login.htm"); //TODO make URL from config
+        onSite().open(cfg.loginUrl()); //TODO make URL from config
         LoginStep loginStep = new LoginStep(driver, atlas);
-        assertThat(loginStep.
-                loginerUserWithCredentional(INVALID_EMAIL, INVALID_PWD), equalTo(true));
+        assertThat(loginStep.loginerUserWithCredentional(INVALID_EMAIL, INVALID_PWD), equalTo(true));
     }
 
 }
