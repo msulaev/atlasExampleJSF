@@ -27,8 +27,8 @@ class EditorTest {
     ConstructorStep constructorStep;
     EditorStep editorStep;
     DocumentGridForField documentGridForField;
-    private Atlas atlas;
-    private RemoteWebDriver driver;
+    Atlas atlas;
+    RemoteWebDriver driver;
 
     { //Example
         caps.setCapability("Name", "msulaev");
@@ -41,7 +41,7 @@ class EditorTest {
     @BeforeEach
     void startDriver(ChromeDriver driver) {
         this.driver = driver;
-        driver.manage().window().setSize(new Dimension(1980, 1024));
+     //   driver.manage().window().setSize(new Dimension(1980, 1024));
         this.atlas = new Atlas(new WebDriverConfiguration(driver));
         constructorStep = new ConstructorStep(driver, atlas);
         editorStep = new EditorStep(driver, atlas);
@@ -50,20 +50,20 @@ class EditorTest {
 
     @Test
     void shouldCanClickSimpleTool() throws InterruptedException {
-        onSite().open("http://192.168.1.211:3000/?isOfflineMode&dontWaitForPdf");
+        onSite().editor().open("http://192.168.1.211:3000/?isOfflineMode&dontWaitForPdf");
         editorStep.clickSimpleToolToolbarElement("Check");
     }
 
     @Test
     void shouldCanOpenConstructor() throws InterruptedException {
-        onSite().open("http://192.168.1.211:3000/?isOfflineMode&dontWaitForPdf");
+        onSite().editor().open("http://192.168.1.211:3000/?isOfflineMode&dontWaitForPdf");
         editorStep.openConstructor();
         constructorStep.clickSaveBtn();
     }
 
     @Test
     void addFieldToGrid() throws InterruptedException {
-        onSite().open("http://192.168.1.211:3000/?isOfflineMode&dontWaitForPdf");
+        onSite().editor().open("http://192.168.1.211:3000/?isOfflineMode&dontWaitForPdf");
         editorStep.openConstructor();
         int[][] grid = constructorStep.createGrid(10);
         constructorStep.addField("Number", "Number1", grid);
@@ -74,7 +74,7 @@ class EditorTest {
 
     @Test
     void changePageScale() throws InterruptedException {
-        onSite().open("http://192.168.1.211:3000/?isOfflineMode&dontWaitForPdf");
+        onSite().editor().open("http://192.168.1.211:3000/?isOfflineMode&dontWaitForPdf");
         editorStep.goToLastDocumentPage();
         editorStep.setPercentPageScale("75");
     }
@@ -84,8 +84,7 @@ class EditorTest {
         return onPage(EditorPage.class);
     }
 
-    private PdfFillerSite onSite() {
-        return onPage(PdfFillerSite.class);
+    PdfFillerSite onSite() { return atlas.create(driver, PdfFillerSite.class);
     }
 
     private <T extends WebPage> T onPage(Class<T> page) {
