@@ -3,17 +3,21 @@ import com.pdffiller.site.PdfFillerSite;
 import com.pdffiller.utils.DocumentGridForField;
 import io.github.bonigarcia.seljup.DriverCapabilities;
 import io.github.bonigarcia.seljup.DriverUrl;
+import io.github.bonigarcia.seljup.SeleniumExtension;
 import io.qameta.atlas.core.Atlas;
 import io.qameta.atlas.webdriver.WebDriverConfiguration;
 import io.qameta.atlas.webdriver.WebPage;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import step.ConstructorStep;
 import step.EditorStep;
 
-public class BaseTest {
+
+@ExtendWith(SeleniumExtension.class)
+class BaseTest {
     @DriverCapabilities
     DesiredCapabilities caps = new DesiredCapabilities();
     @DriverUrl
@@ -43,14 +47,15 @@ public class BaseTest {
     }
 
     //TODO create generic
-     EditorPage onPage() {
+    EditorPage onPage() {
         return onPage(EditorPage.class);
     }
 
-    PdfFillerSite onSite() { return atlas.create(driver, PdfFillerSite.class);
+    PdfFillerSite onSite() {
+        return atlas.create(driver, PdfFillerSite.class);
     }
 
-     private <T extends WebPage> T onPage(Class<T> page) {
+    private <T extends WebPage> T onPage(Class<T> page) {
         return atlas.create(driver, page);
     }
 }
