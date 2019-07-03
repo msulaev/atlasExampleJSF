@@ -1,21 +1,22 @@
 import com.pdffiller.entity.User;
+import extension.CustomParameterExtension;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import step.LoginStep;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
 class LoginTest extends BaseTest {
-    private static final String INVALID_EMAIL = "invalid@invalid.com";
-    private static final String INVALID_PWD = "invalid@invalid.com";
-
+    
+    @ExtendWith(CustomParameterExtension.class)
     @Test
-    void shouldCanNotLoginWithInvalidCredential() {
+    void shouldCanNotLoginWithInvalidCredential(User invalidUserCreds) {
         LoginStep loginStep = new LoginStep(driver, atlas);
 
         onSite().open(cfg.loginUrl());
         assertThat(loginStep
-                .loginerUserWithCredentional(new User().withEmail(INVALID_EMAIL).withPwd(INVALID_PWD))
+                .loginerUserWithCredentional(invalidUserCreds)
                 .isAlertMsg(), equalTo(true));
     }
 
