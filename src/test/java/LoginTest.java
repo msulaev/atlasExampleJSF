@@ -4,15 +4,16 @@ import step.LoginStep;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
-class LoginTest extends EditorTest {
-
+class LoginTest extends BaseTest {
+    private static final String INVALID_EMAIL = "invalid@invalid.com";
+    private static final String INVALID_PWD = "invalid@invalid.com";
 
     @Test
     void shouldCanNotLoginWithInvalidCredential() {
         onSite().open("http://dev3.pdffiller.com/en/login.htm");
         LoginStep loginStep = new LoginStep(driver, atlas);
         assertThat(loginStep.
-                loginerUserWithCredentional("invalid@invalid.com", "invalid"), equalTo(true));
+                loginerUserWithCredentional(INVALID_EMAIL, INVALID_PWD), equalTo(true));
     }
 
 }
