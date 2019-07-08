@@ -9,9 +9,8 @@ class LoginTest extends BaseTest {
     private static final String INVALID_EMAIL = "invalid@invalid.com";
     private static final String INVALID_PWD = "invalid@invalid.com";
 
-    @ExtendWith(MyCustomParameter.class)
     @Test
-    void shouldCanNotLoginWithInvalidCredential(User user ) {
+    void shouldCanNotLoginWithInvalidCredential() {
         LoginStep loginStep = new LoginStep(driver, atlas);
         onSite().open(cfg.loginUrl());
         assertThat(loginStep
