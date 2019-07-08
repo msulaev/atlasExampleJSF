@@ -29,7 +29,7 @@ public interface ConstructorPage extends WebPage {
     @FindBy("//div[@class='Select-option']")
     ElementsCollection ddValues();
 
-    @FindBy("//span[contains(text(),'{{ advancedParameter }}')]/parent::*/parent::*/parent::*/div[@class='entitled-box__main']")
+    @FindBy("//div//span[contains(text(),'{{ advancedParameter }}')]")
     AtlasWebElement fieldAdvancedParameter(@Param("advancedParameter") String parameter);// var parameter its name of advanced parameter,
 
     //this element is a field in which you need to specify the value of this advanced parameter
@@ -45,7 +45,7 @@ public interface ConstructorPage extends WebPage {
     }
 
     default AtlasWebElement getFieldAdvancedParameter(String parameter) {
-        logger.info("'{}' element selector: //span[contains(text(),'{}')]/parent::*/parent::*/parent::*/div[@class='entitled-box__main']",
+        logger.info("'{}' element selector: ///div//span[contains(text(),'{}')]",
                 parameter, parameter);
         return fieldAdvancedParameter(parameter);
     }

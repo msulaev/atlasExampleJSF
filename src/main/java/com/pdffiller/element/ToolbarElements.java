@@ -18,7 +18,7 @@ public interface ToolbarElements {
     @FindBy("//div[@class='toolbar__item']//span[contains(text(),'{{ toolBarItemName }}')]")
     AtlasWebElement toolBarItem(@Param("toolBarItemName") String toolBarItemName);
 
-    @FindBy("//li[@class='menu__list-item']//button//span[contains(text(), '{{ percent }}')]/parent::*/parent::*/parent::*")
+    @FindBy("//button//span[contains(text(), '{{ percent }}')]")
     AtlasWebElement pageScalePercent(@Param("percent") String percent);
 
     default AtlasWebElement getSimpleToolToolbarElement(String toolName) {
@@ -32,7 +32,8 @@ public interface ToolbarElements {
     }
 
     default AtlasWebElement getPercentScale(String percent) {
-        logger.info("{} element selector: //li[@class='menu__list-item']//button//span[contains(text(), {})]/parent::*/parent::*/parent::*", percent, percent);
+        logger.info("{} element selector: //button//span[contains(text(), '{}')]", percent, percent);
         return pageScalePercent(percent);
+
     }
 }
