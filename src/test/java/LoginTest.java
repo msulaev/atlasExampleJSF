@@ -1,5 +1,4 @@
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import step.LoginStep;
 
 import static org.hamcrest.MatcherAssert.assertThat;
