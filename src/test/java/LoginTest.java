@@ -12,7 +12,6 @@ class LoginTest extends BaseTest {
     @Test
     void shouldCanNotLoginWithInvalidCredential() {
         LoginStep loginStep = new LoginStep(driver, atlas);
-
         onSite().open(cfg.loginUrl());
         assertThat(loginStep
                 .loginerUserWithCredentional(new User().withEmail(INVALID_EMAIL).withPwd(INVALID_PWD))
