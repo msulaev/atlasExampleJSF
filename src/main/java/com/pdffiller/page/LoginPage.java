@@ -6,8 +6,6 @@ import io.qameta.atlas.webdriver.WebPage;
 import io.qameta.atlas.webdriver.extension.FindBy;
 import org.slf4j.Logger;
 
-import javax.smartcardio.ATR;
-
 import static org.slf4j.LoggerFactory.getLogger;
 
 public interface LoginPage extends WebPage {
@@ -26,13 +24,13 @@ public interface LoginPage extends WebPage {
     @FindBy("//div[@class='alert alert--error']")
     AtlasWebElement alertMsg();
 
-    default void setEmail(String email){
+    default void setEmail(String email) {
         emailInpt().click();
         logger.info(" login selector: //input[@placeholder = 'Email' and @data-for='t2']");
         emailInpt().sendKeys(email);
     }
 
-    default void setPwd(String pwd){
+    default void setPwd(String pwd) {
         pwdInpt().click();
         logger.info("password input://input[@placeholder = 'Password' and @data-for='t6']");
         pwdInpt().sendKeys(pwd);

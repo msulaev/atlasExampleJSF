@@ -6,6 +6,7 @@ import io.github.bonigarcia.seljup.DriverCapabilities;
 import io.github.bonigarcia.seljup.DriverUrl;
 import io.github.bonigarcia.seljup.SeleniumExtension;
 import io.qameta.atlas.core.Atlas;
+import io.qameta.atlas.core.internal.DefaultRetryer;
 import io.qameta.atlas.webdriver.WebDriverConfiguration;
 import io.qameta.atlas.webdriver.WebPage;
 import org.aeonbits.owner.ConfigFactory;
@@ -17,7 +18,6 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import step.ConstructorStep;
 import step.EditorStep;
 
-
 @ExtendWith(SeleniumExtension.class)
 class BaseTest {
 
@@ -28,6 +28,7 @@ class BaseTest {
 
     @DriverUrl
     String url = "http://192.168.1.121:4444/wd/hub";
+
     ConstructorStep constructorStep;
     EditorStep editorStep;
     DocumentGridForField documentGridForField;
