@@ -4,8 +4,10 @@ import step.Top100FormStep;
 
 import java.util.concurrent.TimeUnit;
 
+import static mathers.CssAttributeMatcher.cssAtr;
 import static org.awaitility.Awaitility.await;
-import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
 
 class OpenW9FormTest extends BaseTest {
     private static final String TOP100_URL = "https://dev3.pdffiller.com/en/top.htm";
@@ -24,5 +26,6 @@ class OpenW9FormTest extends BaseTest {
                 .atMost(20, TimeUnit.SECONDS)
                 .ignoreExceptions()
                 .until(top100FormStep.helpModal()::getText, equalTo("Need Help?"));
+        assertThat(top100FormStep.helpModal(), cssAtr("color", equalTo("")));
     }
 }
