@@ -1,4 +1,4 @@
-package mathers;
+package matchers;
 
 import io.qameta.atlas.webdriver.AtlasWebElement;
 import org.hamcrest.Description;
