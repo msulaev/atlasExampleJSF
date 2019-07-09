@@ -5,6 +5,7 @@ import io.qameta.atlas.webdriver.AtlasWebElement;
 import org.hamcrest.Description;
 import org.hamcrest.Factory;
 import org.hamcrest.TypeSafeMatcher;
+import org.openqa.selenium.WebDriverException;
 
 import static org.openqa.selenium.By.xpath;
 
@@ -19,7 +20,7 @@ public class ExistsMatcher extends TypeSafeMatcher<AtlasWebElement> {
     protected boolean matchesSafely(AtlasWebElement element) {
         try {
             element.findElement(xpath("self::*"));
-        } catch (AtlasException e) {
+        } catch (WebDriverException e) {
             return false;
         }
         return true;
