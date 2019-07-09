@@ -19,18 +19,18 @@ public class CssAttributeMatcher extends TypeSafeMatcher<AtlasWebElement> {
     }
 
     @Factory
-    public static CssAttributeMatcher cssAtr(final String name, final Matcher<String> attributeMatcher) {
+    public static CssAttributeMatcher cssAttribute(final String name, final Matcher<String> attributeMatcher) {
         return new CssAttributeMatcher(name, attributeMatcher);
     }
 
     @Factory
-    public static CssAttributeMatcher cssAtr(final String name, final String value) {
-        return cssAtr(name, is(value));
+    public static CssAttributeMatcher cssAttribute(final String name, final String value) {
+        return cssAttribute(name, is(value));
     }
 
     @Factory
     public static CssAttributeMatcher css(final String name, final Matcher<String> attributeMatcher) {
-        return cssAtr(name, attributeMatcher);
+        return cssAttribute(name, attributeMatcher);
     }
 
     @Factory
