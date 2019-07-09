@@ -5,7 +5,14 @@ import io.qameta.atlas.core.Atlas;
 import io.qameta.atlas.core.api.Retry;
 import io.qameta.atlas.webdriver.AtlasWebElement;
 import io.qameta.atlas.webdriver.WebPage;
+import io.qameta.atlas.webdriver.exception.WaitUntilException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.Wait;
+
+import java.util.concurrent.TimeUnit;
+
+import static org.awaitility.Awaitility.await;
+import static org.hamcrest.CoreMatchers.equalTo;
 
 public class Top100FormStep {
 
