@@ -1,7 +1,4 @@
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
-import step.BaseStep;
-
 
 class EditorTest extends BaseTest {
 
@@ -40,6 +37,7 @@ class EditorTest extends BaseTest {
     void uploadDoc() throws InterruptedException {
         onSite().open(cfg.mainUrl());
         baseStep.uploadFile("test.pdf");
+        Thread.sleep(4000);
     }
 
 }
