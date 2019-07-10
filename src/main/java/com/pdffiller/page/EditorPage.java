@@ -1,6 +1,8 @@
 package com.pdffiller.page;
 
 import com.pdffiller.element.DocumentElements;
+import com.pdffiller.element.DocumentLoaderElements;
+import com.pdffiller.element.ModalElements;
 import com.pdffiller.element.ToolbarElements;
 import io.qameta.atlas.webdriver.AtlasWebElement;
 import io.qameta.atlas.webdriver.WebPage;
@@ -11,7 +13,7 @@ import java.lang.invoke.MethodHandles;
 
 import static org.slf4j.LoggerFactory.getLogger;
 
-public interface EditorPage extends WebPage, ToolbarElements, DocumentElements {
+public interface EditorPage extends WebPage, ToolbarElements, DocumentElements, DocumentLoaderElements, ModalElements {
     Logger logger = getLogger(MethodHandles.lookup().lookupClass());
 
     @FindBy("//span[contains(text(),'ADD FILLABLE FIELDS')]")
@@ -19,6 +21,9 @@ public interface EditorPage extends WebPage, ToolbarElements, DocumentElements {
 
     @FindBy("//i[@class='i i-end']")
     AtlasWebElement btnLastPage();
+
+    @FindBy("//span[contains(text(),'DONE')]")
+    AtlasWebElement doneBtn();
 
 
     default void constructorModeOn() {
