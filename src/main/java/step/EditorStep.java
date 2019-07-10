@@ -51,7 +51,7 @@ public class EditorStep {
     }
 
 
-    private EditorPage onEditorPage() {
+    public EditorPage onEditorPage() {
         return onPage(EditorPage.class);
     }
 
