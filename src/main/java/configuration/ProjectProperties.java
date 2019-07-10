@@ -12,6 +12,10 @@ public interface ProjectProperties extends Config {
         @Key("base.url")
         String baseUrl();
 
+        @DefaultValue("https://dev3.pdffiller.com/en/functionality/uploader?is_subdomain=0")
+        @Key("main.url")
+        String mainUrl();
+
         @DefaultValue("http://dev3.pdffiller.com/en/login.htm")
         @Key("login.url")
         String loginUrl();

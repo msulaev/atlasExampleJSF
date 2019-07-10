@@ -1,4 +1,6 @@
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
+import step.BaseStep;
 
 
 class EditorTest extends BaseTest {
@@ -32,6 +34,12 @@ class EditorTest extends BaseTest {
         onSite().editor().open(cfg.baseUrl()); //TODO make URL from config
         editorStep.goToLastDocumentPage();
         editorStep.setPercentPageScale("75");
+    }
+
+    @Test
+    void uploadDoc() throws InterruptedException {
+        onSite().open(cfg.mainUrl());
+        baseStep.uploadFile("test.pdf");
     }
 
 }

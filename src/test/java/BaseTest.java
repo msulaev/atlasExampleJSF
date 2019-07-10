@@ -12,9 +12,12 @@ import io.qameta.atlas.webdriver.WebPage;
 import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import step.BaseStep;
 import step.ConstructorStep;
 import step.EditorStep;
 
@@ -32,6 +35,7 @@ class BaseTest {
     ConstructorStep constructorStep;
     EditorStep editorStep;
     DocumentGridForField documentGridForField;
+    BaseStep baseStep;
     Atlas atlas;
     RemoteWebDriver driver;
 
@@ -46,11 +50,12 @@ class BaseTest {
     @BeforeEach
     void startDriver(ChromeDriver driver) {
         this.driver = driver;
-        //   driver.manage().window().setSize(new Dimension(1980, 1024));
+        driver.manage().window().setSize(new Dimension(1980, 1024));
         this.atlas = new Atlas(new WebDriverConfiguration(driver));
         constructorStep = new ConstructorStep(driver, atlas);
         editorStep = new EditorStep(driver, atlas);
         documentGridForField = new DocumentGridForField();
+        baseStep = new BaseStep(driver, atlas);
     }
 
     //TODO create generic
