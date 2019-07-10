@@ -39,7 +39,7 @@ class EditorTest extends BaseTest {
     @Test
     void uploadDoc() throws InterruptedException {
         onSite().open(cfg.mainUrl());
-        baseStep.uploadFile();
+        baseStep.uploadFile("test.pdf");
     }
 
 }

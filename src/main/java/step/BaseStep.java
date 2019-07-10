@@ -5,10 +5,19 @@ import io.qameta.atlas.core.Atlas;
 import io.qameta.atlas.webdriver.WebPage;
 import org.openqa.selenium.WebDriver;
 
+import java.io.File;
+
+import static java.nio.file.Paths.get;
+
 public class BaseStep {
 
     WebDriver driver;
     Atlas atlas;
+
+    public BaseStep(WebDriver driver, Atlas atlas) {
+        this.driver = driver;
+        this.atlas = atlas;
+    }
 
     private MainPage onMainPage() {
         return onPage(MainPage.class);
@@ -18,12 +27,11 @@ public class BaseStep {
         return atlas.create(driver, page);
     }
 
-    public void uploadFile() {
-        onMainPage().fileUploadInput().sendKeys(System.getProperty("user.dir")+"\\src\\test\\resources\\test.pdf");
+    public void uploadFile(String fileName) {
+        ClassLoader classLoader = getClass().getClassLoader();
+        File file = new File (classLoader.getResource(fileName).getFile());
+        onMainPage().fileUploadInput().sendKeys(file.getAbsolutePath());
     }
 
-    public BaseStep(WebDriver driver, Atlas atlas) {
-        this.driver = driver;
-        this.atlas = atlas;
-    }
+
 }
