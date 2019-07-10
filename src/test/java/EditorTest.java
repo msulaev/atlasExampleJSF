@@ -1,4 +1,6 @@
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class EditorTest extends BaseTest {
 
@@ -38,6 +40,21 @@ class EditorTest extends BaseTest {
         onSite().open(cfg.mainUrl());
         baseStep.uploadFile("test.pdf");
         Thread.sleep(4000);
+    }
+
+//    @ParameterizedTest
+//    @ValueSource(strings = {"test1", "test2", "test3"})
+    @Test
+    void checkSimpleTool() throws  InterruptedException{
+        onSite().open(cfg.mainUrl());
+        baseStep.uploadFile("test.pdf");
+        editorStep.waitForDocumentOpen();
+        int[][] grid = constructorStep.createGrid(10);
+        editorStep.addSimpleTool("Cross", "cross1", grid);
+        editorStep.selectColorOnToolbar("Red");
+        editorStep.addSimpleTool("Check", "cross1", grid);
+        Thread.sleep(3000);
+
     }
 
 }
