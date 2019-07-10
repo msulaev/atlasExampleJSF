@@ -7,8 +7,6 @@ import org.openqa.selenium.WebDriver;
 
 import java.io.File;
 
-import static java.nio.file.Paths.get;
-
 public class BaseStep {
 
     WebDriver driver;
