@@ -6,15 +6,12 @@ import io.github.bonigarcia.seljup.DriverCapabilities;
 import io.github.bonigarcia.seljup.DriverUrl;
 import io.github.bonigarcia.seljup.SeleniumExtension;
 import io.qameta.atlas.core.Atlas;
-import io.qameta.atlas.core.internal.DefaultRetryer;
 import io.qameta.atlas.webdriver.WebDriverConfiguration;
 import io.qameta.atlas.webdriver.WebPage;
 import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import step.ConstructorStep;
@@ -46,7 +43,7 @@ class BaseTest {
     }
 
     @BeforeEach
-    void startDriver(FirefoxDriver driver) {
+    void startDriver(ChromeDriver driver) {
         this.driver = driver;
         //   driver.manage().window().setSize(new Dimension(1980, 1024));
         this.atlas = new Atlas(new WebDriverConfiguration(driver));

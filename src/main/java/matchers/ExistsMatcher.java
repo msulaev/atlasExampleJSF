@@ -1,6 +1,5 @@
 package matchers;
 
-import io.qameta.atlas.core.AtlasException;
 import io.qameta.atlas.webdriver.AtlasWebElement;
 import org.hamcrest.Description;
 import org.hamcrest.Factory;
