@@ -22,10 +22,6 @@ public interface EditorPage extends WebPage, ToolbarElements, DocumentElements, 
     @FindBy("//i[@class='i i-end']")
     AtlasWebElement btnLastPage();
 
-    @FindBy("//span[contains(text(),'DONE')]")
-    AtlasWebElement doneBtn();
-
-
     default void constructorModeOn() {
         logger.info("constructorBtn element selector //span[contains(text(),'ADD FILLABLE FIELDS')]");
         constructorBtn().click();

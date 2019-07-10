@@ -15,6 +15,9 @@ public interface ToolbarElements {
     @FindBy("//button[@title='{{ toolName }} Tool']")
     AtlasWebElement toolbarElement(@Param("toolName") String toolName);
 
+    @FindBy("//span[contains(text(),'DONE')]")
+    AtlasWebElement doneBtn();
+
     @FindBy("//div[@class='toolbar__item']//span[contains(text(),'{{ toolBarItemName }}')]")
     AtlasWebElement toolBarItem(@Param("toolBarItemName") String toolBarItemName);
 
