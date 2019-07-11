@@ -18,5 +18,6 @@ class UploadDocTest extends BaseTest {
         editorStep.onEditorPage().loader().waitUntil(not(isExists()), 15);
         editorStep.onEditorPage().doneBtn().click();
         assertThat(editorStep.onEditorPage().modalChoice(), isExists());
+
     }
 }

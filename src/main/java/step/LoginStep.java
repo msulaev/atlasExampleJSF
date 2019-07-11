@@ -4,6 +4,7 @@ import com.pdffiller.entity.User;
 import com.pdffiller.page.LoginPage;
 import io.qameta.allure.Step;
 import io.qameta.atlas.core.Atlas;
+import io.qameta.atlas.webdriver.ElementsCollection;
 import org.openqa.selenium.WebDriver;
 
 public class LoginStep extends BaseStep {

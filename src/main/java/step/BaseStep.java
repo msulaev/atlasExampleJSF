@@ -30,6 +30,4 @@ public class BaseStep {
         File file = new File (classLoader.getResource(fileName).getFile());
         onMainPage().fileUploadInput().sendKeys(file.getAbsolutePath());
     }
-
-
 }
