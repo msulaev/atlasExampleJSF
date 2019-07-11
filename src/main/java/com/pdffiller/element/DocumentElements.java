@@ -9,7 +9,6 @@ import java.lang.invoke.MethodHandles;
 
 import static org.slf4j.LoggerFactory.getLogger;
 
-
 public interface DocumentElements {
     Logger logger = getLogger(MethodHandles.lookup().lookupClass());
 
@@ -26,6 +25,5 @@ public interface DocumentElements {
         logger.info("active filed element selector //*[contains(@class, ('is-focused'))]//textarea");
         activeField().click();
     }
-
 
 }

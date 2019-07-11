@@ -9,7 +9,6 @@ import java.lang.invoke.MethodHandles;
 
 import static org.slf4j.LoggerFactory.getLogger;
 
-
 public interface ElementParameterOnToolbar {
     Logger logger = getLogger(MethodHandles.lookup().lookupClass());
 

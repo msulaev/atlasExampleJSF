@@ -9,5 +9,4 @@ public interface DocumentLoaderElements {
     @FindBy(selector = Selector.CSS, value = ".document-loader")
     AtlasWebElement loader();
 
-
 }
