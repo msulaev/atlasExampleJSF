@@ -1,6 +1,5 @@
 package com.pdffiller.page;
 
-import com.pdffiller.element.DocumentElements;
 import io.qameta.atlas.webdriver.AtlasWebElement;
 import io.qameta.atlas.webdriver.ElementsCollection;
 import io.qameta.atlas.webdriver.WebPage;
@@ -12,7 +11,7 @@ import java.lang.invoke.MethodHandles;
 
 import static org.slf4j.LoggerFactory.getLogger;
 
-public interface ConstructorPage extends WebPage, DocumentElements {
+public interface ConstructorPage extends WebPage {
     Logger logger = getLogger(MethodHandles.lookup().lookupClass());
 
     @FindBy("//button//span[contains(text(),'{{ filliableFieldName }}')]")
@@ -32,6 +31,10 @@ public interface ConstructorPage extends WebPage, DocumentElements {
 
     @FindBy("//div//span[contains(text(),'{{ advancedParameter }}')]")
     AtlasWebElement fieldAdvancedParameter(@Param("advancedParameter") String parameter);// var parameter its name of advanced parameter,
+
+    //this element is a field in which you need to specify the value of this advanced parameter
+    @FindBy("//div[@class='page-Page pageActive-Pagination']//div[@class='elementsWrapper-Content']")
+    AtlasWebElement document();
 
     @FindBy(("//*[contains(@class, ('is-active'))]"))
     AtlasWebElement activeField();
