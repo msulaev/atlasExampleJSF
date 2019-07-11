@@ -16,7 +16,7 @@ public interface ElementParameterOnToolbar {
     @FindBy("//button[@title='Select color']")
     AtlasWebElement colorList();
 
-    @FindBy("//button//div[@class='control__box']/span[contains(@style, ('{{ color }}'))]")
+    @FindBy("//span[contains(@style, ('{{ color }}'))]/ancestor::button")
     AtlasWebElement parameterColor(@Param("color") String percent);
 
 }
