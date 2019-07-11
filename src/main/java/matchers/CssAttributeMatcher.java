@@ -19,18 +19,13 @@ public class CssAttributeMatcher extends TypeSafeMatcher<AtlasWebElement> {
     }
 
     @Factory
-    public static CssAttributeMatcher cssAttribute(final String name, final Matcher<String> attributeMatcher) {
+    public static CssAttributeMatcher assertThatCssAttribute(final String name, final Matcher<String> attributeMatcher) {
         return new CssAttributeMatcher(name, attributeMatcher);
     }
 
     @Factory
-    public static CssAttributeMatcher cssAttribute(final String name, final String value) {
-        return cssAttribute(name, is(value));
-    }
-
-    @Factory
     public static CssAttributeMatcher css(final String name, final Matcher<String> attributeMatcher) {
-        return cssAttribute(name, attributeMatcher);
+        return assertThatCssAttribute(name, attributeMatcher);
     }
 
     @Factory
@@ -46,7 +41,7 @@ public class CssAttributeMatcher extends TypeSafeMatcher<AtlasWebElement> {
     public void describeTo(Description description) {
         description.appendText(" Atlas element css attribute ").
                 appendValue(name).
-                appendText(" is ").
+                appendText(" ").
                 appendDescriptionOf(matcher);
     }
 

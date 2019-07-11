@@ -69,38 +69,36 @@ public class EditorStep {
 
     @Step
     public String getElementColor(String element){
+        if(element.equals("Cross")) {
+            element = "checkmark";
+        }
         String color = onEditorPage().addedSimpleElement(element).getCssValue("fill");
-        switch (color) {
-            case "rgb(255, 0, 0)":
-                return "Red";
-            case "rgb(0, 0,255)":
-                return "Blue";
-            case "rgb(255, 255,255)":
-                return "White";
-            case "rgb(0, 0,0)":
-                return "Black";
-            default:
-                return "";
+        if(color.equals("rgb(255, 0, 0)")){
+            return "Red";
+        }else if (color.equals("rgb(0, 0,255)")){
+            return "Blue";
+        }else if(color.equals("rgb(255, 255,255)")){
+            return "White";
+        }else if(color.equals("rgb(0, 0,0)")){
+            return "Black";
+        } else {
+            return "";
         }
     }
 
     @Step
     public void selectColorOnToolbar(String color) {
         onEditorPage().colorList().click();
-        switch (color) {
-            case "Red":
-                onEditorPage().parameterColor("rgb(255, 0, 0)").click();
-                break;
-            case "Blue":
-                onEditorPage().parameterColor("rgb(0, 0, 255)").click();
-                break;
-            case "White":
-                onEditorPage().parameterColor("rgb(255, 255, 255)").click();
-                break;
-            case "Black":
-                onEditorPage().parameterColor("rgb(0, 0, 0)").click();
-                break;
+        if(color.equals("Red")){
+            onEditorPage().parameterColor("rgb(255, 0, 0)").click();
+        }else if (color.equals("Blue")){
+            onEditorPage().parameterColor("rgb(0, 0, 255)").click();
+        }else if(color.equals("White")){
+            onEditorPage().parameterColor("rgb(255, 255, 255)").click();
+        }else if(color.equals("Black")){
+            onEditorPage().parameterColor("rgb(0, 0, 0)").click();
         }
+
     }
 
     @Step
