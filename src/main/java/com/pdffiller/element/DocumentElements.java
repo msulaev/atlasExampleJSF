@@ -15,9 +15,6 @@ public interface DocumentElements {
     @FindBy("//*[contains(@class, ('is-focused'))]//textarea")
     AtlasWebElement activeField();
 
-    @FindBy("//div[@class='page-Page pageActive-Pagination']//div[@class='elementsWrapper-Content']")
-    AtlasWebElement document();
-
     default void clickActiveField() {
         logger.info("active filed element selector //*[contains(@class, ('is-focused'))]//textarea");
         activeField().click();
