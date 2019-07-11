@@ -1,5 +1,7 @@
 import org.junit.jupiter.api.Test;
 
+import static matchers.CssAttributeMatcher.cssAttribute;
+
 class EditorTest extends BaseTest {
 
     @Test
@@ -38,6 +40,17 @@ class EditorTest extends BaseTest {
         onSite().open(cfg.mainUrl());
         baseStep.uploadFile("test.pdf");
         Thread.sleep(4000);
+    }
+
+    @Test
+    void changeSimpleToolColor() throws  InterruptedException{
+        onSite().open(cfg.mainUrl());
+        baseStep.uploadFile("test.pdf");
+        editorStep.waitForDocumentOpen();
+        int[][] grid = constructorStep.createGrid(10);
+        editorStep.addSimpleTool("Cross", "cross1", grid);
+        editorStep.selectColorOnToolbar("Red");
+        cssAttribute(editorStep.getElementColor("checkmark"), "Red");
     }
 
 }
