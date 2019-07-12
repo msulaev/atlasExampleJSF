@@ -1,9 +1,13 @@
+import com.pdffiller.utils.MyCustomExt;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import step.EditorStep;
 
 import static matchers.CssAttributeMatcher.assertThatCssAttribute;
 import static org.hamcrest.core.Is.is;
 
+@ExtendWith( MyCustomExt.class)
 public class SimpleToolTest extends BaseTest{
 
     @BeforeEach
@@ -17,7 +21,7 @@ public class SimpleToolTest extends BaseTest{
     void shouldCanChangeSimpleToolColor() throws  InterruptedException{
         int[][] grid = constructorStep.createGrid(10);
         editorStep.addSimpleTool("Cross", "cross1", grid);
-        editorStep.selectColorOnToolbar("Red");
+        editorStep.setColorOnToolbar(EditorStep.Color.Red.getCode());
         assertThatCssAttribute(editorStep.getElementColor("Cross"), is("Red"));
     }
 

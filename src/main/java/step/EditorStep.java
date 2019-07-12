@@ -9,6 +9,9 @@ import io.qameta.atlas.webdriver.WebPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static matchers.ExistsMatcher.isExists;
 import static org.hamcrest.Matchers.not;
 
@@ -22,6 +25,30 @@ public class EditorStep {
         this.driver = driver;
         this.atlas = atlas;
         documentGridForField = new DocumentGridForField();
+    }
+
+    public enum Color {
+        Red("rgb(255, 0, 0)"),
+        Blue("rgb(0, 0,255)"),
+        White("rgb(255, 255,255)"),
+        Black("rgb(0, 0, 0)");
+        Color (String code) {
+            this.code = code;
+        }
+        private String code;
+        private static final Map<String, Color> BY_CODE = new HashMap<>();
+        static {
+            for (Color e : values()) {
+                BY_CODE.put(e.code, e);
+            }
+        }
+
+        public static Color valueOfCode(String code) {
+            return BY_CODE.get(code);
+        }
+        public String getCode() {
+            return code;
+        }
     }
 
     @Step
@@ -72,32 +99,14 @@ public class EditorStep {
         if(element.equals("Cross")) {
             element = "checkmark";
         }
-        String color = onEditorPage().addedSimpleElement(element).getCssValue("fill");
-        if(color.equals("rgb(255, 0, 0)")){
-            return "Red";
-        }else if (color.equals("rgb(0, 0,255)")){
-            return "Blue";
-        }else if(color.equals("rgb(255, 255,255)")){
-            return "White";
-        }else if(color.equals("rgb(0, 0,0)")){
-            return "Black";
-        } else {
-            return "";
-        }
+        String code = onEditorPage().addedSimpleElement(element).getCssValue("fill");
+        return Color.valueOfCode(code).toString();
     }
 
     @Step
-    public void selectColorOnToolbar(String color) {
+    public void setColorOnToolbar(String colorCode) {
         onEditorPage().colorList().click();
-        if(color.equals("Red")){
-            onEditorPage().parameterColor("rgb(255, 0, 0)").click();
-        }else if (color.equals("Blue")){
-            onEditorPage().parameterColor("rgb(0, 0, 255)").click();
-        }else if(color.equals("White")){
-            onEditorPage().parameterColor("rgb(255, 255, 255)").click();
-        }else if(color.equals("Black")){
-            onEditorPage().parameterColor("rgb(0, 0, 0)").click();
-        }
+        onEditorPage().parameterColor(colorCode).click();
 
     }
 

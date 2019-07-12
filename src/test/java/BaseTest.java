@@ -1,6 +1,7 @@
 import com.pdffiller.page.EditorPage;
 import com.pdffiller.site.PdfFillerSite;
 import com.pdffiller.utils.DocumentGridForField;
+import com.pdffiller.utils.MyCustomExt;
 import configuration.ProjectProperties;
 import io.github.bonigarcia.seljup.DriverCapabilities;
 import io.github.bonigarcia.seljup.DriverUrl;
@@ -20,7 +21,7 @@ import step.BaseStep;
 import step.ConstructorStep;
 import step.EditorStep;
 
-@ExtendWith(SeleniumExtension.class)
+@ExtendWith({SeleniumExtension.class, MyCustomExt.class})
 class BaseTest {
 
     ProjectProperties cfg = ConfigFactory.create(ProjectProperties.class);
