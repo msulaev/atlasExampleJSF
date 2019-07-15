@@ -6,10 +6,7 @@ import io.qameta.atlas.webdriver.AtlasWebElement;
 import io.qameta.atlas.webdriver.WebPage;
 import org.openqa.selenium.WebDriver;
 
-public class Top100FormStep {
-
-    private WebDriver driver;
-    private Atlas atlas;
+public class Top100FormStep extends BaseStep{
 
     public Top100FormStep(WebDriver driver, Atlas atlas) {
         this.driver = driver;
@@ -18,10 +15,6 @@ public class Top100FormStep {
 
     private Top100FormPage onTop100FormPage() {
         return onPage(Top100FormPage.class);
-    }
-
-    private <T extends WebPage> T onPage(Class<T> page) {
-        return atlas.create(driver, page);
     }
 
     public Top100FormStep openW9FormFromTop100() {

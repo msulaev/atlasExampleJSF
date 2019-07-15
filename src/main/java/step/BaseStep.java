@@ -17,6 +17,9 @@ public class BaseStep {
         this.atlas = atlas;
     }
 
+    public BaseStep() {
+    }
+
     private MainPage onMainPage() {
         return onPage(MainPage.class);
     }
