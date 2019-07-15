@@ -24,6 +24,7 @@ public class MyCustomExt implements TestWatcher
 
     @Override
     public void testFailed(ExtensionContext context, Throwable cause) {
-        System.out.printf("TEST FAILED");
+        System.out.println("TEST FAILED "+ context.getRequiredTestMethod());
+        System.out.println(cause.getMessage());
     }
 }
