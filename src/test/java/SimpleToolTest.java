@@ -21,7 +21,7 @@ public class SimpleToolTest extends BaseTest{
     void shouldCanChangeSimpleToolColor() throws  InterruptedException{
         int[][] grid = constructorStep.createGrid(10);
         editorStep.addSimpleTool("Cross", "cross1", grid);
-        editorStep.setColorOnToolbar(EditorStep.Color.Red.getCode());
+        editorStep.setColorOnToolbar("Red");
         assertThatCssAttribute(editorStep.getElementColor("Cross"), is("Red"));
     }
 

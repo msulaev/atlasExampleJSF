@@ -9,21 +9,17 @@ public class MyCustomExt implements TestWatcher
 {
     @Override
     public void testDisabled(ExtensionContext context, Optional<String> reason) {
-        System.out.println("test successful");
-
-
+        System.out.println("Test successful");
     }
 
     @Override
     public void testSuccessful(ExtensionContext context) {
-        System.out.println("test successful");
+        System.out.println("Test successful");
     }
 
     @Override
     public void testAborted(ExtensionContext context, Throwable cause) {
-        System.out.println("test successful");
-
-
+        System.out.println("Test successful");
     }
 
     @Override

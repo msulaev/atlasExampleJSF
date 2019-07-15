@@ -3,6 +3,7 @@ package step;
 import com.pdffiller.element.DocumentElements;
 import com.pdffiller.page.EditorPage;
 import com.pdffiller.utils.DocumentGridForField;
+import com.pdffiller.utils.ToolbarColor;
 import io.qameta.allure.Step;
 import io.qameta.atlas.core.Atlas;
 import io.qameta.atlas.webdriver.WebPage;
@@ -20,35 +21,15 @@ public class EditorStep {
     DocumentGridForField documentGridForField;
     private WebDriver driver;
     private Atlas atlas;
+    ToolbarColor toolbarColor;
+
 
     public EditorStep(WebDriver driver, Atlas atlas) {
         this.driver = driver;
         this.atlas = atlas;
         documentGridForField = new DocumentGridForField();
-    }
+        toolbarColor = new ToolbarColor();
 
-    public enum Color {
-        Red("rgb(255, 0, 0)"),
-        Blue("rgb(0, 0,255)"),
-        White("rgb(255, 255,255)"),
-        Black("rgb(0, 0, 0)");
-        Color (String code) {
-            this.code = code;
-        }
-        private String code;
-        private static final Map<String, Color> BY_CODE = new HashMap<>();
-        static {
-            for (Color e : values()) {
-                BY_CODE.put(e.code, e);
-            }
-        }
-
-        public static Color valueOfCode(String code) {
-            return BY_CODE.get(code);
-        }
-        public String getCode() {
-            return code;
-        }
     }
 
     @Step
@@ -100,11 +81,12 @@ public class EditorStep {
             element = "checkmark";
         }
         String code = onEditorPage().addedSimpleElement(element).getCssValue("fill");
-        return Color.valueOfCode(code).toString();
+        return toolbarColor.getValueByCode(code);
     }
 
     @Step
-    public void setColorOnToolbar(String colorCode) {
+    public void setColorOnToolbar(String color) {
+        String colorCode = toolbarColor.getCode("Red");
         onEditorPage().colorList().click();
         onEditorPage().parameterColor(colorCode).click();
 
